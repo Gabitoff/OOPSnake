@@ -4,3 +4,4 @@
 4, test
 1590, Winner 
 20, nametestok
+960, хорошо

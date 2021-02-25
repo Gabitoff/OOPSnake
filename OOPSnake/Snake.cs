@@ -13,13 +13,21 @@ namespace OOPSnake
 		public Snake(Point tail, int length, Direction _direction)
 		{
 			direction = _direction;
-			pList = new List<Point>();
-			for (int i = 0; i < length; i++)
-			{
-				Point p = new Point(tail);
-				p.Move(i, direction);
-				pList.Add(p);
+			if (direction == Direction.PAUSE)
+            {
+				
+            }
+            else
+            {
+				pList = new List<Point>();
+				for (int i = 0; i < length; i++)
+				{
+					Point p = new Point(tail);
+					p.Move(i, direction);
+					pList.Add(p);
+				}
 			}
+			
 		}
 
 		public void Move()
@@ -62,6 +70,8 @@ namespace OOPSnake
 				direction = Direction.DOWN;
 			else if (key == ConsoleKey.UpArrow)
 				direction = Direction.UP;
+			else if (key == ConsoleKey.Spacebar)
+				direction = Direction.PAUSE;
 		}
 
 		public bool Eat(Point food)

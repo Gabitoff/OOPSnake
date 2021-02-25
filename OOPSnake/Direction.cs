@@ -11,6 +11,7 @@ namespace OOPSnake
 		LEFT,
 		RIGHT,
 		UP,
-		DOWN
+		DOWN,
+		PAUSE
 	}
 }
