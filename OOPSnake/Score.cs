@@ -68,8 +68,28 @@ namespace OOPSnake
             int yOffset = 15;
             Console.SetCursorPosition(xOffset, yOffset++);
             Console.Write("Введите своё имя: ", xOffset, yOffset++);
-            string userName = Console.ReadLine();
-            uName = userName;
+            string usName = Console.ReadLine();
+            //если вводится имя короче 3х символов, выводится ошибка и функция запускается заново до тех пор, пока не будет введено имя длиннее 3х символов
+            //если вводится имя длиной в 3 или больше символов, сохраняем результат и уведомляем об этом пользователя
+            try
+            { 
+                if (usName.Length < 3)
+                {
+                    throw new FormatException();
+                }
+                else
+                {
+                    uName = usName;
+                    Console.SetCursorPosition(xOffset, yOffset++);
+                    Console.WriteLine("Ваш результат успешно сохранён в базе данных!", xOffset, yOffset++);
+                }
+            }
+            catch (FormatException)
+            {
+                Console.SetCursorPosition(xOffset, yOffset++);
+                Console.WriteLine("Имя должно быть длиннее 3х символов", xOffset, yOffset++);
+                userName();
+            }
             return uName;
         }
         public void WriteBestResult()
