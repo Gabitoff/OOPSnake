@@ -16,13 +16,11 @@ namespace OOPSnake
             pathToRecordFile = _pathToResources + "record.txt";
             pathToResultsFile = _pathToResources + "results.txt";
 
-            //Console.ForegroundColor = ConsoleColor.DarkGray;
             WriteText("Время игры", 89, 0);
             WriteText("Счёт", 92, 3);
 
             ShowCurrentPoints();
 
-            //Console.ForegroundColor = ConsoleColor.DarkGreen;
             WriteText("Рекорд:", 89, 6);
 
             WriteText(DisplayBestResult(), 98, 6);

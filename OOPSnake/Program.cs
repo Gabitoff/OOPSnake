@@ -15,7 +15,6 @@ namespace OOPSnake
 			Walls walls = new Walls(80, 25);
 			walls.Draw();
 
-
 			// Отрисовка точек			
 			Point p = new Point(4, 5, '*');
 			Snake snake = new Snake(p, 4, Direction.RIGHT);
@@ -26,7 +25,7 @@ namespace OOPSnake
 			FoodCreator foodCreator2 = new FoodCreator(80, 25, 'R');//второй тип еды, который даёт случайное количество очков от 20 до 90
 			Point food2 = foodCreator2.CreateFood();
 
-			food.Draw();
+			food.Draw("Yellow");//обычную еду $ делаем жёлтого цвета
 
 			//пути и настройки
 			Params settings = new Params();
@@ -58,21 +57,20 @@ namespace OOPSnake
 					int n;
 					if (check > 0 && ((check + 10) % 100) == 0)//когда количество очков заканчивается на 100, генерируется еда R
 					{
-						food2.Draw();
+						food2.Draw("Red"); //бонусную еду R делаем красного цвета
 						n = 1;
 
 					}
 					else if (check > 0 && check % 100 == 0)//когда съедаем еду R, генерируется обычная еда, но начисляется рандомное количество очков 20-90
 					{
-						food.Draw();
+						food.Draw("Yellow");//обычную еду $ делаем жёлтого цвета
 						n = 2;
 					}
 					else
 					{
-						food.Draw();
+						food.Draw("Yellow");//обычную еду $ делаем жёлтого цвета
 						n = 1;
 					}
-					//food.Draw();
 					score.UpCurrentPoints(n);//при помощи n определяем, начисляются ли стандартные 10 очков либо рандомные 20-90
 					score.ShowCurrentPoints();
 				}
@@ -95,12 +93,6 @@ namespace OOPSnake
 			score.WriteBestResult();
 			Console.ReadLine();
 		}
-
-		/*static void WriteText( String text, int xOffset, int yOffset )
-		{
-			Console.SetCursorPosition( xOffset, yOffset );
-			Console.WriteLine( text );
-		}*/
 
 	}
 }

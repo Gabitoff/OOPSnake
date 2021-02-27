@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Diagnostics;
 
 namespace OOPSnake
 {
@@ -11,26 +12,27 @@ namespace OOPSnake
     {
         static int seconds = 0;
         string time = "";
-        bool status = true;
+        public static bool status = true;// по-умолчанию счётчик сразу же включен, т.к. наша змейка при включении игры сразу же двигается
 
         //получаем значение bool  из Program.cs и останавливаем счётчик времени когда игра закончена, значение статус идёт в OnTimedEvent для остановки счётчика
+        //этот же bool используется в Snake.cs и при включении паузы останавливает таймер
         public bool CounterStatus(bool _status)
         {
             status = _status;
             return status;
         }
+
         public void Counter()
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 1000;
-            aTimer.Enabled = true;
+            aTimer.Enabled = status; //останавливаем таймер при проигрыше или при включении паузы и запускаем снова, если игра продолжилась после паузы
         }
 
         public void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            ((System.Timers.Timer)source).Enabled = status;
-            if (status == true)
+            if (status == true) //секунды "бегут" только если таймер включен, во время паузы время так же останавливается
             {
                 seconds++;
                 if (seconds < 10)

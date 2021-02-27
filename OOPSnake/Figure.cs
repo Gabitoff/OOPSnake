@@ -14,7 +14,7 @@ namespace OOPSnake
 		{
 			foreach (Point p in pList)
 			{
-				p.Draw();
+				p.Draw("Gray");
 			}
 		}
 

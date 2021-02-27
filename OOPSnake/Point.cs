@@ -8,9 +8,11 @@ namespace OOPSnake
 {
 	class Point
 	{
+
 		public int x;
 		public int y;
 		public char sym;
+		public string color = "";
 
 		public Point()
 		{
@@ -48,6 +50,11 @@ namespace OOPSnake
 			{
 				y = y + offset;
 			}
+			/*else if (direction == Direction.PAUSE)
+			{
+				y = y;
+				x = x;
+			}*/
 		}
 
 		public bool IsHit(Point p)
@@ -55,16 +62,19 @@ namespace OOPSnake
 			return p.x == this.x && p.y == this.y;
 		}
 
-		public void Draw()
+		public void Draw(string _color)//с помощью переменной _color сможем раскрашивать еду разными цветами
 		{
+			color = _color;
+			Console.ForegroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color);
 			Console.SetCursorPosition(x, y);
 			Console.Write(sym);
+			Console.ForegroundColor = ConsoleColor.Gray;//после того, как нарисуем цветную еду снова задаём стандартный серый цвет, чтобы все остальные символы на экране остались стандартного цвета
 		}
 
 		public void Clear()
 		{
 			sym = ' ';
-			Draw();
+			Draw("Black");
 		}
 
 		public override string ToString()
